@@ -1,8 +1,8 @@
-FROM nginx:stable
+FROM node:14-slim
 
-COPY ./dist/rightfoot-payments-demo /var/www
-COPY ./nginx.conf /etc/nginx/conf.d/default.conf
+WORKDIR /var/www
 
-CMD ["sh", "-c", "nginx -g 'daemon off;'"]
+COPY . .
 
-EXPOSE 80
+RUN yarn install
+CMD [ "yarn", "start" ]

@@ -15,7 +15,7 @@ import { StorageService } from './storage.service';
  */
 interface UpdatedPlaidConfig extends PlaidConfig {
   accountTypes?: {
-    loan?: Array<'student'>
+    loan?: Array<string>
   };
 }
 
@@ -37,10 +37,10 @@ export class PlaidService {
     env: environment.plaid.environment,
     key: environment.plaid.publicKey,
     product: ['liabilities'],
-    countryCodes: ['US'],
-    accountTypes: {
-      loan: ['student']
-    }
+    countryCodes: ['US', 'CA']
+    //accountTypes: {
+    //  loan: ['loan', 'credit']
+    //}
   };
 
   private handlePlaidLoan(config: PlaidConfigWithoutListeners): Observable<PlaidOnSuccessArgs> {
